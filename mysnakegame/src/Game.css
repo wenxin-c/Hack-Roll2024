@@ -1,0 +1,143 @@
+.gameWrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.information{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10px;
+    color: white;
+}
+
+.btns{
+    width: 350px;
+}
+
+.startBtn {
+    width: 165px;
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: #f0cdcd;
+    border: 2px solid #422800;
+    border-radius: 20px;
+    box-shadow: #b1b1b1 3px 3px 0 0;
+    color: #422800;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bolder;
+    font-size: 18px;
+    padding: 0 18px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.startBtn:hover {
+    background-color: #ece3e3;
+}
+
+.startBtn:active {
+    box-shadow: #422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+}
+
+.stopBtn {
+    width: 165px;
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: #bfc5ec;
+    border: 2px solid #422800;
+    border-radius: 20px;
+    box-shadow: #b1b1b1 3px 3px 0 0;
+    color: #422800;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bolder;
+    font-size: 18px;
+    padding: 0 18px;
+    line-height: 50px;
+    text-align: center;
+  }
+  
+  .stopBtn:hover {
+    background-color: #ebeffe;
+  }
+  
+  .stopBtn:active {
+    box-shadow: #422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+  }
+
+  .pauseBtn {
+    width: 165px;
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: #ebd267;
+    border: 2px solid #422800;
+    border-radius: 20px;
+    box-shadow: #b1b1b1 3px 3px 0 0;
+    color: #422800;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bolder;
+    font-size: 18px;
+    padding: 0 18px;
+    line-height: 50px;
+    text-align: center;
+  }
+  
+  .pauseBtn:hover {
+    background-color: #f9efc5;
+  }
+  
+  .pauseBtn:active {
+    box-shadow: #422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+  }
+
+  .resumeBtn {
+    width: 165px;
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: #7ae388;
+    border: 2px solid #422800;
+    border-radius: 20px;
+    box-shadow: #b1b1b1 3px 3px 0 0;
+    color: #422800;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bolder;
+    font-size: 18px;
+    padding: 0 18px;
+    line-height: 50px;
+    text-align: center;
+  }
+  
+  .resumeBtn:hover {
+    background-color: #d2f2d0;
+  }
+  
+  .resumeBtn:active {
+    box-shadow: #422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+  }
+
+  .scoreScreen {
+    font-size: xxx-large;
+    font-family: cursive;
+    margin-top: 5px;
+  }
+
+  .cmdScreen {
+    font-size: x-large;
+  }
+
+  .gameoverScreen {
+    font-family: fantasy;
+    font-size: xxx-large;
+    background-color: #00000054;
+    border: "2px solid black",
+  }
+
