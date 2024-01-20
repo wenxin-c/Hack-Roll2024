@@ -10,6 +10,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import SpeechRecognition, {useSpeechRecognition} from "react-speech-recognition"; 
 import useInterval from "./useInterval";
+import useSound from 'use-sound';
+import buttonSound from './sound/button.mp3';
+import gameoverSound from './sound/gameover.mp3';
+import scoreSound from './sound/scoreSound.mp3';
 import './Game.css';
 import Google from './images/google.png';
 import Apple from './images/apple.png';
@@ -47,6 +51,9 @@ function Game() {
     const [direction, setDirection] = useState(INITIAL_DIRECTION);
     const [gameOver, setGameOver] = useState(false);
     const [command, setCommand] = useState("");
+    const [pressButton] = useSound(buttonSound);
+    const [playGameover] = useSound(gameoverSound);
+    const [playScoresound] = useSound(scoreSound);
 
     // Speech recognition commands and change direction 
     const commands = [
@@ -67,6 +74,7 @@ function Game() {
 
     // Start the game
     const handleGameStart = () => {
+        pressButton();
         setInternshipCoords(INTERNSHIP_COORDS);
         setInternshipType(0);
         setStudent(STUDENT_COORDS);
@@ -80,6 +88,7 @@ function Game() {
 
     // Pause the same
     const handleGamePause = () => {
+        pressButton();
         setCommand("");
         setDelay(null);
         resetTranscript();
@@ -88,6 +97,7 @@ function Game() {
 
     // Resume the game
     const handleGameResume = () => {
+        pressButton();
         setCommand("");
         setDelay(MOVEMENT_DELAY);
         SpeechRecognition.startListening({continuous: true});
@@ -105,6 +115,7 @@ function Game() {
         setDelay(null);
         setGameOver(true);
         setCommand("");
+        playGameover();
     };
 
     // Check collision of student with walls
@@ -144,6 +155,7 @@ function Game() {
         if (newStudentHead[0] === internshipCoords[0] && newStudentHead[1] === internshipCoords[1]) {
             let newScore = score+1;
             setScore(newScore);
+            playScoresound();
             let newInternship = generateInternshipCoords();
             while (hasCollisionWithStudent(newInternship, newStudent)) {
                 newInternship = generateInternshipCoords();
