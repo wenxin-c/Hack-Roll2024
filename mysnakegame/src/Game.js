@@ -2,7 +2,7 @@
 // Apple image: https://en.m.wikipedia.org/wiki/File:Apple_Computer_Logo_rainbow.svg
 // Google image: https://www.cleanpng.com/png-google-logo-2280160/
 // Amazon image: https://wisdom-stone.com/home/amazon-logo/
-// Facebook image: https://nohat.cc/f/icon-facebook-facebook-icon-png-circle/m2i8Z5i8N4Z5b1N4-202208011946.html
+// Facebook image: https://www.pngwing.com/en/free-png-zwysg/download
 // Netflix image: https://www.iconfinder.com/icons/4375011/logo_netflix_icon
 // Student image: https://icon-icons.com/icon/woman-student/100407
 // Lightning image: https://stock.adobe.com/sg/search?k=lightning+logo&asset_id=166809176
@@ -19,10 +19,11 @@ import Google from './images/google.png';
 import Apple from './images/apple.png';
 import Amazon from './images/amazon.png';
 import Netflix from './images/netflix.png';
+import Facebook from './images/facebook.png';
 import Student from './images/student.png';
 import Lightning from './images/lightning.png';
 
-const CANVAS = [550, 550];
+const CANVAS = [500, 500];
 const DIRECTION_MAP = {
   'up': [0, -1],  // Up
   'down': [0, 1],   // Down
@@ -36,7 +37,7 @@ const STUDENT_COORDS = [
   [6, 3],
 ]; 
 const INTERNSHIP_COORDS = [4, 8];
-const INTERNSHIPS = ["google", "apple", "amazon", "netflix"];
+const INTERNSHIPS = ["google", "apple", "amazon", "netflix", "facebook"];
 const SCALE = 40;
 const MOVEMENT_DELAY = 1000;  // Delay duration of the movement, smaller delay means faster movement
 
@@ -225,20 +226,23 @@ function Game() {
                 <img id="apple" src = {Apple} alt="apple internship" width="35px" height="35px"></img>
                 <img id="amazon" src = {Amazon} alt="amazon internship" width="35px" height="35px"></img>
                 <img id="netflix" src = {Netflix} alt="netflix internship" width="35px" height="35px"></img>
+                <img id="facebook" src = {Facebook} alt="facebook internship" width="35px" height="35px"></img>
                 <img id="student" src = {Student} alt="student" width="35px" height="35px"></img>
                 <img id="lightning" src = {Lightning} alt="lightning" width="35px" height="35px"></img>
             </div>
-            <canvas
-                id = "canvas"
-                style={{
-                    marginTop: "3px",
-                    border: "2px solid black",
-                    backgroundColor: 'azure',
-                }}
-                ref={canvasRef}
-                width={`${CANVAS[0]}px`}
-                height={`${CANVAS[1]}px`}
-            />
+            <div className="canvasScreen">
+                <canvas
+                    id = "canvas"
+                    style={{
+                        marginTop: "20px",
+                        border: "2px solid black",
+                        backgroundColor: 'azure',
+                    }}
+                    ref={canvasRef}
+                    width={`${CANVAS[0]}px`}
+                    height={`${CANVAS[1]}px`}
+                />
+            </div>
             <div className = "gameoverScreen" 
                 style={{ 
                 display: gameOver ? "flex" : "none" , 
@@ -254,7 +258,7 @@ function Game() {
             <div className = "information">
                 <div className="title">Num-Num Intern</div>
                 <div className = "scoreScreen">Score: {score}</div>
-                <div className = "cmdScreen">Command: {command}</div>
+                {/* <div className = "cmdScreen">Command: {command}</div> */}
                 {/* <div className = "transcriptScreen"> Transcript: {transcript}</div> */}
                 
                 <div className = "btns">
