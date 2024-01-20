@@ -252,6 +252,7 @@ function Game() {
                     <div>Score: {score}</div>
                 </div>
             <div className = "information">
+                <div className="title">Num-Num Intern</div>
                 <div className = "scoreScreen">Score: {score}</div>
                 <div className = "cmdScreen">Command: {command}</div>
                 {/* <div className = "transcriptScreen"> Transcript: {transcript}</div> */}
