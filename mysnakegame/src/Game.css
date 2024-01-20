@@ -116,10 +116,10 @@
     transform: translate(2px, 2px);
   }
 
-  .canvasScreen {
+  /* .canvasScreen {
     display: flex;
     flex-direction: column;
-  }
+  } */
 
   .information{
     display: flex;

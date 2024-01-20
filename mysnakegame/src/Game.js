@@ -250,6 +250,8 @@ function Game() {
                 alignItems:'center', 
                 flexDirection: 'column',
                 position: 'absolute', 
+                marginTop: '16.3px',
+                marginLeft: '2px',
                 width:`${CANVAS[0]}px`, 
                 height:`${CANVAS[0]}px`}}>
                     <div>GAME OVER!</div>
