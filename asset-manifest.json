@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.711b4e2a.css",
-    "main.js": "/static/js/main.137426de.js",
-    "static/js/845.46c1ae55.chunk.js": "/static/js/845.46c1ae55.chunk.js",
-    "static/media/cbd.jpg": "/static/media/cbd.b25c659223756da1b5b8.jpg",
-    "static/media/facebook.png": "/static/media/facebook.0d362a53d6cb41623202.png",
-    "static/media/button.mp3": "/static/media/button.54ece3c086c35cd3be74.mp3",
-    "static/media/lightning.png": "/static/media/lightning.7da6e275666ab1f472cf.png",
-    "static/media/student.png": "/static/media/student.62a1882cf7ea2d8051cf.png",
-    "static/media/apple.png": "/static/media/apple.18cbd07d36a9643b34be.png",
-    "static/media/gameover.mp3": "/static/media/gameover.21c74c34f50a8ecedde0.mp3",
-    "static/media/scoreSound.mp3": "/static/media/scoreSound.c2a751bc7601f887cf38.mp3",
-    "static/media/google.png": "/static/media/google.0b50af2fbb8c1e8ca23e.png",
-    "static/media/netflix.png": "/static/media/netflix.ece38c783f13b599ecd8.png",
-    "index.html": "/index.html",
-    "main.711b4e2a.css.map": "/static/css/main.711b4e2a.css.map",
-    "main.137426de.js.map": "/static/js/main.137426de.js.map",
-    "845.46c1ae55.chunk.js.map": "/static/js/845.46c1ae55.chunk.js.map"
+    "main.css": "/Hack&Roll2024/static/css/main.36cd7480.css",
+    "main.js": "/Hack&Roll2024/static/js/main.1278d4db.js",
+    "static/js/845.46c1ae55.chunk.js": "/Hack&Roll2024/static/js/845.46c1ae55.chunk.js",
+    "static/media/cbd.jpg": "/Hack&Roll2024/static/media/cbd.b25c659223756da1b5b8.jpg",
+    "static/media/facebook.png": "/Hack&Roll2024/static/media/facebook.0d362a53d6cb41623202.png",
+    "static/media/button.mp3": "/Hack&Roll2024/static/media/button.54ece3c086c35cd3be74.mp3",
+    "static/media/lightning.png": "/Hack&Roll2024/static/media/lightning.7da6e275666ab1f472cf.png",
+    "static/media/student.png": "/Hack&Roll2024/static/media/student.62a1882cf7ea2d8051cf.png",
+    "static/media/apple.png": "/Hack&Roll2024/static/media/apple.18cbd07d36a9643b34be.png",
+    "static/media/gameover.mp3": "/Hack&Roll2024/static/media/gameover.21c74c34f50a8ecedde0.mp3",
+    "static/media/scoreSound.mp3": "/Hack&Roll2024/static/media/scoreSound.c2a751bc7601f887cf38.mp3",
+    "static/media/google.png": "/Hack&Roll2024/static/media/google.0b50af2fbb8c1e8ca23e.png",
+    "static/media/netflix.png": "/Hack&Roll2024/static/media/netflix.ece38c783f13b599ecd8.png",
+    "index.html": "/Hack&Roll2024/index.html",
+    "main.36cd7480.css.map": "/Hack&Roll2024/static/css/main.36cd7480.css.map",
+    "main.1278d4db.js.map": "/Hack&Roll2024/static/js/main.1278d4db.js.map",
+    "845.46c1ae55.chunk.js.map": "/Hack&Roll2024/static/js/845.46c1ae55.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.711b4e2a.css",
-    "static/js/main.137426de.js"
+    "static/css/main.36cd7480.css",
+    "static/js/main.1278d4db.js"
   ]
 }
