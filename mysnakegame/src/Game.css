@@ -1,15 +1,15 @@
-.gameWrapper{
+.game{
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.btns{
+.buttons{
     width: 350px;
 }
 
 .startBtn {
-    width: 165px;
+    width: 140px;
     margin-top: 10px;
     margin-left: 10px;
     background-color: #f0cdcd;
@@ -36,7 +36,7 @@
 }
 
 .stopBtn {
-    width: 165px;
+    width: 140px;
     margin-top: 10px;
     margin-left: 10px;
     background-color: #bfc5ec;
@@ -63,7 +63,7 @@
   }
 
   .pauseBtn {
-    width: 165px;
+    width: 140px;
     margin-top: 10px;
     margin-left: 10px;
     background-color: #ebd267;
@@ -90,7 +90,7 @@
   }
 
   .resumeBtn {
-    width: 165px;
+    width: 140px;
     margin-top: 10px;
     margin-left: 10px;
     background-color: #7ae3d9;
@@ -125,7 +125,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 10px;
+    margin-left: 20px;
     color: white;
   }
 
@@ -133,17 +133,17 @@
     font-weight: bolder;
     font-size: xxx-large;
   }
-  .scoreScreen {
+  .score {
     font-size: xx-large;
     font-family: cursive;
     margin-top: 5px;
   }
 
-  .cmdScreen {
+  .cmd {
     font-size: x-large;
   }
 
-  .gameoverScreen {
+  .gameOver {
     font-family: fantasy;
     font-size: xxx-large;
     background-color: #00000054;

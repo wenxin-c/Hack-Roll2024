@@ -23,7 +23,7 @@ import Facebook from './images/facebook.png';
 import Student from './images/student.png';
 import Lightning from './images/lightning.png';
 
-const CANVAS = [500, 500];
+const CANVAS = [550, 550];
 const DIRECTION_MAP = {
   'up': [0, -1],  // Up
   'down': [0, 1],   // Down
@@ -32,18 +32,18 @@ const DIRECTION_MAP = {
 };
 const DIRECTIONS = ["up", "down", "left", "right"];
 const INITIAL_DIRECTION = [1, 0]; // To move right at the beginning of game
-const STUDENT_COORDS = [
-  [7, 3],
-  [6, 3],
-]; 
-const INTERNSHIP_COORDS = [4, 8];
-const INTERNSHIPS = ["google", "apple", "amazon", "netflix", "facebook"];
 const SCALE = 40;
+const STUDENT_COORDS = [
+  [280, 120],
+  [240, 120],
+]; 
+const INTERNSHIP_COORDS = [160, 320];
+const INTERNSHIPS = ["google", "apple", "amazon", "netflix", "facebook"];
 const MOVEMENT_DELAY = 1000;  // Delay duration of the movement, smaller delay means faster movement
 
 function Game() {
     const canvasRef = useRef();
-    // const imageRef = useRef();
+    const [speechSupport, setSpeechSupport] = useState(true);
     const [internshipCoords, setInternshipCoords] = useState(INTERNSHIP_COORDS);
     const [internshipType, setInternshipType] = useState(0);
     const [student, setStudent] = useState(STUDENT_COORDS);
@@ -55,6 +55,10 @@ function Game() {
     const [pressButton] = useSound(buttonSound);
     const [playGameover] = useSound(gameoverSound);
     const [playScoresound] = useSound(scoreSound);
+
+    if(!SpeechRecognition.browserSupportsSpeechRecognition()){
+        setSpeechSupport(false);
+    }
 
     // Speech recognition commands and change direction 
     const commands = [
@@ -121,7 +125,7 @@ function Game() {
 
     // Check collision of student with walls
     const hasCollisionWithWalls = (snakeHead) => {
-        if(snakeHead[0]*SCALE>=CANVAS[0] || snakeHead[0]<0 || snakeHead[1]*SCALE>=CANVAS[1] || snakeHead[1]<0) {
+        if(snakeHead[0]>=CANVAS[0] || snakeHead[0]<0 || snakeHead[1]>=CANVAS[1] || snakeHead[1]<0) {
             return true;
         }
         return false;
@@ -139,9 +143,8 @@ function Game() {
 
     // Generate the coordinates of internships
     const generateInternshipCoords = () => {
-        // Math.random() returns a random number [0, 1)
-        var x = Math.floor(Math.random() * (CANVAS[0] / SCALE));
-        var y = Math.floor(Math.random() * (CANVAS[1] / SCALE));
+        var x = Math.floor(Math.random() * CANVAS[0]);
+        var y = Math.floor(Math.random() * CANVAS[1]);
         return [x, y];
     }
 
@@ -152,8 +155,7 @@ function Game() {
 
     // Check whether the current internship is taken and create new internships
     const hasInternshipTaken = (newStudent) => {
-        let newStudentHead = newStudent[0];
-        if (newStudentHead[0] === internshipCoords[0] && newStudentHead[1] === internshipCoords[1]) {
+        if (newStudent[0][0] === internshipCoords[0] && newStudent[0][1] === internshipCoords[1]) {
             let newScore = score+1;
             setScore(newScore);
             playScoresound();
@@ -169,16 +171,16 @@ function Game() {
         return false;
     };
 
-    // Main game driver
+    // Student movement
     const moveStudent = () => {
         const studentTemp = JSON.parse(JSON.stringify(student));
-        const newStudentHead = [studentTemp[0][0] + direction[0], studentTemp[0][1] + direction[1]];
+        const newStudentHead = [studentTemp[0][0] + direction[0]*SCALE, studentTemp[0][1] + direction[1]*SCALE];
         studentTemp.unshift(newStudentHead);
-        if (!hasInternshipTaken(studentTemp)){
-            studentTemp.pop();
-        } 
         if (hasCollisionWithWalls(newStudentHead) || hasCollisionWithStudent(newStudentHead, student)){
             handleGameOver();
+        } 
+        if (!hasInternshipTaken(studentTemp)){
+            studentTemp.pop();
         } 
         setStudent(studentTemp);
     };
@@ -203,24 +205,19 @@ function Game() {
         for(let i=0; i<student.length; i+=1){
             let studentSegment = student[i];
             if(i===0){
-                draw(studentSegment[0]*SCALE, studentSegment[1]*SCALE, "student");
+                draw(studentSegment[0], studentSegment[1], "student");
             }else{
-                draw(studentSegment[0]*SCALE, studentSegment[1]*SCALE, "lightning");
+                draw(studentSegment[0], studentSegment[1], "lightning");
             }
         }
 
         // Draw internship
-        draw(internshipCoords[0]*SCALE, internshipCoords[1]*SCALE, INTERNSHIPS[internshipType]);
+        draw(internshipCoords[0], internshipCoords[1], INTERNSHIPS[internshipType]);
 
     }, [student, internshipCoords, internshipType, gameOver]);
 
-    // Check whether browser supports speech recognition
-    if(!SpeechRecognition.browserSupportsSpeechRecognition()){
-        return null;
-    }
-
     return (
-        <div className = "gameWrapper" role="button" tabIndex="0">
+        <div className = "game" role="button" tabIndex="0">
             <div style={{display:"none"}}>
                 <img id="google" src = {Google} alt="google internship" width="35px" height="35px"></img>
                 <img id="apple" src = {Apple} alt="apple internship" width="35px" height="35px"></img>
@@ -230,7 +227,7 @@ function Game() {
                 <img id="student" src = {Student} alt="student" width="35px" height="35px"></img>
                 <img id="lightning" src = {Lightning} alt="lightning" width="35px" height="35px"></img>
             </div>
-            <div className="canvasScreen">
+            <div className="canvasWrapper">
                 <canvas
                     id = "canvas"
                     style={{
@@ -243,7 +240,7 @@ function Game() {
                     height={`${CANVAS[1]}px`}
                 />
             </div>
-            <div className = "gameoverScreen" 
+            <div className = "gameOver" 
                 style={{ 
                 display: gameOver ? "flex" : "none" , 
                 justifyContent:'center', 
@@ -259,16 +256,17 @@ function Game() {
                 </div>
             <div className = "information">
                 <div className="title">Num-Num Intern</div>
-                <div className = "scoreScreen">Score: {score}</div>
-                {/* <div className = "cmdScreen">Command: {command}</div> */}
+                <div className = "score">Score: {score}</div>
+                {/* <div className = "cmd">Command: {command}</div> */}
                 {/* <div className = "transcriptScreen"> Transcript: {transcript}</div> */}
                 
-                <div className = "btns">
-                    <button className = "startBtn" onClick={handleGameStart}>Start Game</button>
-                    <button className = "stopBtn" onClick={handleGameStop}>Stop Game</button>
-                    <button className = "pauseBtn" onClick={handleGamePause}>Pause Game</button>
-                    <button className = "resumeBtn" onClick={handleGameResume}>Resume Game</button>
+                <div className = "buttons">
+                    <button className = "startBtn" onClick={handleGameStart}>Start</button>
+                    <button className = "stopBtn" onClick={handleGameStop}>Stop</button>
+                    <button className = "pauseBtn" onClick={handleGamePause}>Pause</button>
+                    <button className = "resumeBtn" onClick={handleGameResume}>Resume</button>
                 </div>
+                <div style={{display: speechSupport ? "none" : "block"}}>The current Web browser does not support speech recognition, please try another one. </div>
             </div>
         </div>
     );
