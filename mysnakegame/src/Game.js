@@ -34,10 +34,10 @@ const DIRECTIONS = ["up", "down", "left", "right"];
 const INITIAL_DIRECTION = [1, 0]; // To move right at the beginning of game
 const SCALE = 40;
 const STUDENT_COORDS = [
-  [280, 120],
-  [240, 120],
+  [7, 3],
+  [6, 3],
 ]; 
-const INTERNSHIP_COORDS = [160, 320];
+const INTERNSHIP_COORDS = [4, 8];
 const INTERNSHIPS = ["google", "apple", "amazon", "netflix", "facebook"];
 const MOVEMENT_DELAY = 1000;  // Delay duration of the movement, smaller delay means faster movement
 
@@ -125,16 +125,16 @@ function Game() {
 
     // Check collision of student with walls
     const hasCollisionWithWalls = (snakeHead) => {
-        if(snakeHead[0]>=CANVAS[0] || snakeHead[0]<0 || snakeHead[1]>=CANVAS[1] || snakeHead[1]<0) {
+        if((snakeHead[0]*SCALE)>=CANVAS[0] || (snakeHead[0]*SCALE)<0 || (snakeHead[1]*SCALE)>=CANVAS[1] || (snakeHead[1]*SCALE)<0) {
             return true;
         }
         return false;
     };
 
     // Check collision of student with internship or himself
-    const hasCollisionWithStudent = (head, fullSnake) => {
-        for (let i=0; i<fullSnake.length; i+=1){
-            if(head[0]===fullSnake[i][0] && head[1]===fullSnake[i][1]){
+    const hasCollisionWithStudent = (head, fullStudent) => {
+        for (let i=0; i<fullStudent.length; i+=1){
+            if(head[0]===fullStudent[i][0] && head[1]===fullStudent[i][1]){
                 return true;
             }
         }
@@ -143,8 +143,8 @@ function Game() {
 
     // Generate the coordinates of internships
     const generateInternshipCoords = () => {
-        var x = Math.floor(Math.random() * CANVAS[0]);
-        var y = Math.floor(Math.random() * CANVAS[1]);
+        var x = Math.floor(Math.random() * (CANVAS[0]/SCALE));
+        var y = Math.floor(Math.random() * (CANVAS[1]/SCALE));
         return [x, y];
     }
 
@@ -171,10 +171,10 @@ function Game() {
         return false;
     };
 
-    // Student movement
+    // Student Movement
     const moveStudent = () => {
         const studentTemp = JSON.parse(JSON.stringify(student));
-        const newStudentHead = [studentTemp[0][0] + direction[0]*SCALE, studentTemp[0][1] + direction[1]*SCALE];
+        const newStudentHead = [studentTemp[0][0] + direction[0], studentTemp[0][1] + direction[1]];
         studentTemp.unshift(newStudentHead);
         if (hasCollisionWithWalls(newStudentHead) || hasCollisionWithStudent(newStudentHead, student)){
             handleGameOver();
@@ -205,14 +205,14 @@ function Game() {
         for(let i=0; i<student.length; i+=1){
             let studentSegment = student[i];
             if(i===0){
-                draw(studentSegment[0], studentSegment[1], "student");
+                draw(studentSegment[0]*SCALE, studentSegment[1]*SCALE, "student");
             }else{
-                draw(studentSegment[0], studentSegment[1], "lightning");
+                draw(studentSegment[0]*SCALE, studentSegment[1]*SCALE, "lightning");
             }
         }
 
         // Draw internship
-        draw(internshipCoords[0], internshipCoords[1], INTERNSHIPS[internshipType]);
+        draw(internshipCoords[0]*SCALE, internshipCoords[1]*SCALE, INTERNSHIPS[internshipType]);
 
     }, [student, internshipCoords, internshipType, gameOver]);
 
